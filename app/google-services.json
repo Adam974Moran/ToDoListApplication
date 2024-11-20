@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "750357421559",
+    "firebase_url": "https://todolistandnotifications-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "todolistandnotifications",
+    "storage_bucket": "todolistandnotifications.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750357421559:android:71abc7b02172d2d23722f2",
+        "android_client_info": {
+          "package_name": "com.example.todolistandnotifications"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN3AN5lvd0oQ7hjaEKiTb8wDBHCthXDVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

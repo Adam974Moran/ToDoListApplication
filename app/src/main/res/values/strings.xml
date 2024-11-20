@@ -1,0 +1,40 @@
+<resources>
+    <!-- activity_main.xml -->
+    <string name="userProfileIconDescription">Пользовательская Иконка</string>
+    <string name="applicationName">Список дел и уведомлений</string>
+    <string name="contentMenuDescription">Меню содержания</string>
+    <string name="toDoObjectTime">12.30\n14.20</string>
+    <string name="toDoObjectTitle">Название задания</string>
+    <string name="toDoObjectDescription">Описание задания</string>
+
+    <!-- registration_page.xml -->
+    <string name="userNameInputFieldHint">Введите имя: </string>
+    <string name="userSurnameInputFieldHint">Введите фамилию: </string>
+    <string name="passwordDuplicateInputFieldHint">Повторите пароль: </string>
+    <string name="doesAccountExistsText">Уже есть аккаунт?</string>
+    <string name="registrationPageButtonText"><u>Регистрация</u></string>
+    <string name="logInButtonText">Вход</string>
+
+    <!-- log_in_page.xml -->
+    <string name="logInUserIconDescription">Log In User Icon</string>
+    <string name="userEmailInputFieldHint">Введите email: </string>
+    <string name="passwordInputFieldHint">Введите пароль: </string>
+    <string name="doesAccountExists2Text">Ещё нет аккаунта?</string>
+    <string name="logInPageButtonText"><u>Вход</u></string>
+    <string name="registrationButtonText">Регистрация</string>
+
+    <!-- create_to_do_object.xml -->
+    <string name="toDoObjectNameHint">Введите название: </string>
+    <string name="toDoObjectDescriptionHint">Введите описание: </string>
+    <string name="toDoObjectDateAndTime">Дата и время: </string>
+    <string name="toDoObjectDateHint">гггг.мм.дд</string>
+    <string name="toDoObjectTimeHint">чч:мм</string>
+    <string name="toDoObjectRepeat">Повторение: </string>
+    <string name="toDoObjectRepeatEveryDay">Каждый день</string>
+    <string name="toDoObjectRepeatEverySevenDays">Каждые 7 дней</string>
+    <string name="toDoObjectRepeatEveryMonth">Каждые 30 дней</string>
+    <string name="acceptButtonText">Сохранить</string>
+    <string name="cancelButtonText">Отмена</string>
+
+
+</resources>
