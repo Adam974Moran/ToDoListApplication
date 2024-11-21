@@ -25,7 +25,7 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in_page);
-        setEditTextWidth();
+        //setEditTextWidth();
 
         userEmailInputField = findViewById(R.id.logInUserEmailInputField);
         userPasswordInputField = findViewById(R.id.logInPasswordInputField);

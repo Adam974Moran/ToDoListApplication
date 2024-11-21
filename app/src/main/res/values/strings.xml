@@ -24,6 +24,7 @@
     <string name="registrationButtonText">Регистрация</string>
 
     <!-- create_to_do_object.xml -->
+    <string name="creationMainTitle">Создать задание</string>
     <string name="toDoObjectNameHint">Введите название: </string>
     <string name="toDoObjectDescriptionHint">Введите описание: </string>
     <string name="toDoObjectDateAndTime">Дата и время: </string>

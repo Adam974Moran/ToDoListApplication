@@ -6,128 +6,177 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <EditText
-        android:id="@+id/toDoObjectName"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="180dp"
-        android:autofillHints=""
-        android:background="@drawable/input_field_background"
-        android:gravity="center_vertical"
-        android:hint="@string/toDoObjectNameHint"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textColorHint="#505050"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/toDoObjectDescription"
-        android:layout_width="350dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:background="@drawable/input_field_background"
-        android:gravity="center_vertical"
-        android:hint="@string/toDoObjectDescriptionHint"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textColorHint="#505050"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoObjectName" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/dateAndTimeTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/toDoObjectDateAndTime"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoObjectDescription" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/toDoObjectDate"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="@string/toDoObjectDateHint"
-        android:textColorHint="@color/gray"
-        android:background="@drawable/input_field_background"
-        android:inputType="date"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateAndTimeTextView"
-        tools:ignore="Autofill" />
+                <EditText
+                    android:id="@+id/toDoObjectName"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="30dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_field_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/toDoObjectNameHint"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="#505050"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <EditText
-        android:id="@+id/toDoObjectTime"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/input_field_background"
-        android:ems="10"
-        android:hint="@string/toDoObjectTimeHint"
-        android:inputType="time"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoObjectDate"
-        tools:ignore="Autofill" />
+                <EditText
+                    android:id="@+id/toDoObjectDescription"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_field_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/toDoObjectDescriptionHint"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="#505050"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toDoObjectName" />
 
-    <TextView
-        android:id="@+id/repeatTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/toDoObjectRepeat"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toDoObjectTime" />
+                <TextView
+                    android:id="@+id/dateAndTimeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/toDoObjectDateAndTime"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toDoObjectDescription" />
 
-    <Spinner
-        android:id="@+id/repeatSpinner"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/input_field_background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatTextView" />
+                <EditText
+                    android:id="@+id/toDoObjectDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/input_field_background"
+                    android:ems="10"
+                    android:hint="@string/toDoObjectDateHint"
+                    android:inputType="date"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dateAndTimeTextView"
+                    tools:ignore="Autofill" />
 
-    <Button
-        android:id="@+id/acceptButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_background"
-        android:text="@string/acceptButtonText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repeatSpinner" />
+                <EditText
+                    android:id="@+id/toDoObjectTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/input_field_background"
+                    android:ems="10"
+                    android:hint="@string/toDoObjectTimeHint"
+                    android:inputType="time"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toDoObjectDate"
+                    tools:ignore="Autofill" />
 
-    <Button
-        android:id="@+id/cancelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/button_background"
-        android:text="@string/cancelButtonText"
-        app:layout_constraintStart_toEndOf="@+id/acceptButton"
-        app:layout_constraintTop_toBottomOf="@+id/repeatSpinner" />
+                <TextView
+                    android:id="@+id/repeatTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/toDoObjectRepeat"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toDoObjectTime" />
+
+                <Spinner
+                    android:id="@+id/repeatSpinner"
+                    android:layout_width="200dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/input_field_background"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/repeatTextView" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="100dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/repeatSpinner">
+
+                    <Button
+                        android:id="@+id/acceptButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_background"
+                        android:text="@string/acceptButtonText"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/cancelButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_background"
+                        android:text="@string/cancelButtonText"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.953"
+                        app:layout_constraintStart_toEndOf="@+id/acceptButton"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:text="@string/creationMainTitle"
+                    android:textColor="@color/purple_500"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.504"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

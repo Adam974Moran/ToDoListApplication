@@ -126,14 +126,27 @@ public class ToDoObject {
         String[] stringDate = parseDate(date);
         String[] stringTime = parseTime(time);
         String[] timeAndDate = {"0000", "00", "00", "99", "99"};
+        if(stringDate.length != 3 || stringTime.length != 2){
+            return timeAndDate;
+        }
         int j = 0;
         for(int i = 0; i < stringDate.length; i++){
-            timeAndDate[j] = stringDate[i];
+            if(stringDate[i].length() < 2){
+                timeAndDate[i] = "0" + stringDate[i];
+            }
+            else{
+                timeAndDate[j] = stringDate[i];
+            }
             j++;
         }
         j = 3;
         for(int i = 0; i < stringTime.length; i++){
-            timeAndDate[j] = stringTime[i];
+            if(stringTime[i].length() < 2){
+                timeAndDate[j] = "0" + stringTime[i];
+            }
+            else{
+                timeAndDate[j] = stringTime[i];
+            }
             j++;
         }
         return timeAndDate;

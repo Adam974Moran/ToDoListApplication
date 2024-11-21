@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="#DAD9D9">
+    android:background="#D1C4FF">
 
     <TextView
         android:id="@+id/toDoObjectTime"
@@ -35,7 +35,7 @@
             android:id="@+id/toDoObjectDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#595959" />
+            android:textColor="#474747" />
     </LinearLayout>
 
     <CheckBox

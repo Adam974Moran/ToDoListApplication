@@ -109,4 +109,6 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         db.close(); // Закрываем базу данных после использования
         return myList;
     }
+
+
 }

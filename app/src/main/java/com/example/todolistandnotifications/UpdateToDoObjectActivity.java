@@ -36,7 +36,7 @@ public class UpdateToDoObjectActivity extends AppCompatActivity implements Adapt
 
         Button cancelButton = findViewById(R.id.cancelButton);
         cancelButton.setOnClickListener(v -> {
-            Intent intent = new Intent(CreateToDoObjectActivity.this, MainMenuActivity.class);
+            Intent intent = new Intent(UpdateToDoObjectActivity.this, MainMenuActivity.class);
             startActivity(intent);
         });
 
@@ -75,9 +75,9 @@ public class UpdateToDoObjectActivity extends AppCompatActivity implements Adapt
 
             //Обновляем базу данных
 
-            MyDatabaseHelper myDB = new MyDatabaseHelper(CreateToDoObjectActivity.this);
+            MyDatabaseHelper myDB = new MyDatabaseHelper(UpdateToDoObjectActivity.this);
             myDB.updateTasks(currentUser.getEmail(), currentUser.fromListToJson(userListOfObjects));
-            Intent intent = new Intent(CreateToDoObjectActivity.this, MainMenuActivity.class);
+            Intent intent = new Intent(UpdateToDoObjectActivity.this, MainMenuActivity.class);
             startActivity(intent);
         });
     }

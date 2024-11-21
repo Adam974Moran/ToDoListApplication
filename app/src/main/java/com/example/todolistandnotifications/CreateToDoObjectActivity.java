@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CreateToDoObjectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -43,21 +44,47 @@ public class CreateToDoObjectActivity extends AppCompatActivity implements Adapt
 
         Button acceptButton = findViewById(R.id.acceptButton);
         acceptButton.setOnClickListener(v -> {
+            CurrentUserClass cuc = (CurrentUserClass) getApplicationContext();
+            User currentUser = cuc.getUser();
+            List<ToDoObject> userListOfObjects = currentUser.getTasks();
             ToDoObject newObject = new ToDoObject();
+            for(ToDoObject object: userListOfObjects){
+//                Toast.makeText(this, object.getMainTitle() + " " + taskName.getText().toString(), Toast.LENGTH_LONG).show();
+//                try {
+//                    Thread.sleep(1000); // 1000 миллисекунд = 1 секунда
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+                if(Objects.equals(object.getMainTitle(), taskName.getText().toString())){
+                    Toast.makeText(this, "Задача с таким именем уже существует!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
             if(!taskName.getText().toString().isEmpty()){
                 newObject.setMainTitle(taskName.getText().toString());
             } else {
-                Toast.makeText(this, "Поле имени пустое! Введите название!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Поле имени пустое! Введите название!", Toast.LENGTH_LONG).show();
                 return;
             }
             newObject.setDescription(taskDescription.getText().toString());
 
+            if (taskDate.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Вы не ввели дату!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else if (taskTime.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Вы не ввели время!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            
             String[] stringTimeAndDate = ToDoObject.convertToStringArrayDate(taskDate.getText().toString(), taskTime.getText().toString());
+
             if(ToDoObject.isTimeAndDateCorrect(stringTimeAndDate)){
                 newObject.setTimeAndDate(stringTimeAndDate);
                 newObject.setCompleted(false);
-            } else {
-                Toast.makeText(this, "Поля даты и времени некорректные! Введите заново!", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(this, "Поля даты и времени некорректные! Введите заново!", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -65,9 +92,6 @@ public class CreateToDoObjectActivity extends AppCompatActivity implements Adapt
 
             //Обновляем пользователя
 
-            CurrentUserClass cuc = (CurrentUserClass) getApplicationContext();
-            User currentUser = cuc.getUser();
-            List<ToDoObject> userListOfObjects = currentUser.getTasks();
             userListOfObjects.add(newObject);
 
             currentUser.setTasks(userListOfObjects);

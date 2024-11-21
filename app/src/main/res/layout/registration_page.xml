@@ -7,158 +7,163 @@
     android:background="@color/purple_500"
     app:hintTextAppearance="@style/CustomHintStyle">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/userIcon"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginTop="100dp"
-                android:contentDescription="@string/logInUserIconDescription"
-                android:scaleType="fitXY"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/user_icon" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/userNameInputField"
-                android:layout_width="350dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="35dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints=""
-                android:background="@drawable/input_field_background"
-                android:gravity="center_vertical"
-                android:hint="@string/userNameInputFieldHint"
-                android:textColorHint="#505050"
-                android:inputType="text"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userIcon" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
 
-            <EditText
-                android:id="@+id/userSurnameInputField"
-                android:layout_width="350dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints=""
-                android:background="@drawable/input_field_background"
-                android:gravity="center_vertical"
-                android:hint="@string/userSurnameInputFieldHint"
-                android:textColorHint="#505050"
-                android:inputType="text"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userNameInputField" />
+                <ImageView
+                    android:id="@+id/userIcon"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="100dp"
+                    android:contentDescription="@string/logInUserIconDescription"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/user_icon" />
 
-            <EditText
-                android:id="@+id/userEmailInputField"
-                android:layout_width="350dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="30dp"
-                android:autofillHints=""
-                android:background="@drawable/input_field_background"
-                android:gravity="center_vertical"
-                android:hint="@string/userEmailInputFieldHint"
-                android:textColorHint="#505050"
-                android:inputType="text"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userSurnameInputField"
-                tools:ignore="TextFields" />
+                <EditText
+                    android:id="@+id/userNameInputField"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="30dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_field_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/userNameInputFieldHint"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="#505050"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/userIcon" />
 
-            <EditText
-                android:id="@+id/passwordInputField"
-                android:layout_width="350dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/input_field_background"
-                android:gravity="center_vertical"
-                android:hint="@string/passwordInputFieldHint"
-                android:textColorHint="#505050"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userEmailInputField" />
+                <EditText
+                    android:id="@+id/userSurnameInputField"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_field_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/userSurnameInputFieldHint"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="#505050"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/userNameInputField" />
 
-            <EditText
-                android:id="@+id/passwordDuplicateInputField"
-                android:layout_width="350dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
-                android:background="@drawable/input_field_background"
-                android:gravity="center_vertical"
-                android:hint="@string/passwordDuplicateInputFieldHint"
-                android:textColorHint="#505050"
-                android:importantForAutofill="no"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordInputField" />
+                <EditText
+                    android:id="@+id/userEmailInputField"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:autofillHints=""
+                    android:background="@drawable/input_field_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/userEmailInputFieldHint"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="#505050"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/userSurnameInputField"
+                    tools:ignore="TextFields" />
 
-            <TextView
-                android:id="@+id/doesAccountExists"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
-                android:text="@string/doesAccountExistsText"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordDuplicateInputField" />
+                <EditText
+                    android:id="@+id/passwordInputField"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/input_field_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/passwordInputFieldHint"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textColorHint="#505050"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/userEmailInputField" />
 
-            <Button
-                android:id="@+id/registrationButton"
-                android:layout_width="130dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="30dp"
-                android:adjustViewBounds="true"
-                android:background="@drawable/button_background"
-                android:text="@string/registrationButtonText"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:backgroundTint="@null"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordDuplicateInputField" />
+                <EditText
+                    android:id="@+id/passwordDuplicateInputField"
+                    android:layout_width="350dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/input_field_background"
+                    android:gravity="center_vertical"
+                    android:hint="@string/passwordDuplicateInputFieldHint"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textColorHint="#505050"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordInputField" />
 
-            <Button
-                android:id="@+id/logInPageButton"
-                android:layout_width="70dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="135dp"
-                android:layout_marginTop="14dp"
-                android:background="@android:color/transparent"
-                android:textAllCaps="false"
-                android:text="@string/logInPageButtonText"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:backgroundTint="@null"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordDuplicateInputField" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordDuplicateInputField">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                    <TextView
+                        android:id="@+id/doesAccountExists"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/doesAccountExistsText"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.512" />
+
+                    <Button
+                        android:id="@+id/logInPageButton"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="124dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/logInPageButtonText"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:backgroundTint="@null"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/registrationButton"
+                        android:layout_width="130dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="4dp"
+                        android:adjustViewBounds="true"
+                        android:background="@drawable/button_background"
+                        android:text="@string/registrationButtonText"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:backgroundTint="@null"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
