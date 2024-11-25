@@ -4,8 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -18,6 +19,14 @@ public class RegistrationActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_page);
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Оставь это пустым или добавь свой код, чтобы отключить стандартное поведение кнопки "Назад"
+            }
+        });
 
         userNameInputField = findViewById(R.id.userNameInputField);
         userSurnameInputField = findViewById(R.id.userSurnameInputField);
@@ -33,16 +42,12 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
         registrationButton.setOnClickListener(v -> {
-            if(userPasswordInputField.getText() != passwordDuplicateInputField.getText()){
-                Toast.makeText(this, "Пароли не совпадают! Попробуйте ещё раз!", Toast.LENGTH_LONG).show();
-            }
-            else {
+
                 MyDatabaseHelper myDB = new MyDatabaseHelper(RegistrationActivity.this);
                 myDB.addUser(userNameInputField.getText().toString().trim(),
                         userSurnameInputField.getText().toString().trim(),
                         userEmailInputField.getText().toString().trim(),
                         userPasswordInputField.getText().toString().trim());
-            }
         });
     }
 

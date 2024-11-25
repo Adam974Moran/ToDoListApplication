@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +28,13 @@ public class LogInActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in_page);
-        //setEditTextWidth();
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Оставь это пустым или добавь свой код, чтобы отключить стандартное поведение кнопки "Назад"
+            }
+        });
 
         userEmailInputField = findViewById(R.id.logInUserEmailInputField);
         userPasswordInputField = findViewById(R.id.logInPasswordInputField);
@@ -46,26 +55,6 @@ public class LogInActivity extends AppCompatActivity {
                 Toast.makeText(this, "Wrong User Email Or Password! Try Again!", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    public void setEditTextWidth() {
-
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-
-        int screenWidth = displayMetrics.widthPixels;
-
-        if (screenWidth > 350) {
-            EditText editText = findViewById(R.id.logInUserEmailInputField);
-            ViewGroup.LayoutParams params = editText.getLayoutParams();
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            editText.setLayoutParams(params);
-
-            editText = findViewById(R.id.logInPasswordInputField);
-            params = editText.getLayoutParams();
-            params.width = ViewGroup.LayoutParams.MATCH_PARENT;
-            editText.setLayoutParams(params);
-        }
     }
 
     private boolean isUserCorrect(String userEmail, String userPassword) {

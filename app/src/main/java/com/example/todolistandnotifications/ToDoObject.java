@@ -106,20 +106,25 @@ public class ToDoObject {
         System.err.println("\nBefore: " + Arrays.toString(dateBorderBefore) +
                 "\nAfter: " + Arrays.toString(dateBorderAfter)+
                 "\nTimeNadDate: " + Arrays.toString(timeAndDate) + "\n");
+
         for(int i = 0; i < 5; i++){
-            if(Integer.parseInt(timeAndDate[i]) < dateBorderBefore[i] ||
-                    Integer.parseInt(timeAndDate[i]) > dateBorderAfter[i]){
-                System.out.println("\n" + Integer.parseInt(timeAndDate[i])+" ? "+ dateBorderBefore[i] + "\n");
-                System.out.println("\n" + Integer.parseInt( timeAndDate[i])+" ? "+ dateBorderAfter[i] + "\n");
+            if(Integer.parseInt(timeAndDate[i]) < dateBorderBefore[i]) {
                 return false;
             }
-            else if(Integer.parseInt(timeAndDate[i]) > dateBorderBefore[i] &&
-                    Integer.parseInt(timeAndDate[i]) < dateBorderAfter[i]){
-                return true;
+            else if(Integer.parseInt(timeAndDate[i]) > dateBorderBefore[i]){
+                break;
             }
 
         }
-        return false;
+        for(int i = 0; i < 5; i++){
+            if(Integer.parseInt(timeAndDate[i]) > dateBorderAfter[i]){
+                return false;
+            }
+            else if(Integer.parseInt(timeAndDate[i]) < dateBorderAfter[i]) {
+                return true;
+            }
+        }
+        return true;
     }
 
     public static String[] convertToStringArrayDate (String date, String time){

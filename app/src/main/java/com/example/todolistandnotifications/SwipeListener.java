@@ -82,14 +82,19 @@ public class SwipeListener implements View.OnTouchListener {
                 CurrentUserClass cuc = (CurrentUserClass) context.getApplicationContext();
                 User currentUser = cuc.getUser();
                 List<ToDoObject> myObjects = currentUser.getTasks();
+                ToDoObject objectToRemove = null;
                 for (ToDoObject myObject : myObjects) {
                     if(Objects.equals(myObject.getMainTitle(), ((TextView) view.findViewById(R.id.toDoObjectTitle)).getText().toString())){
-                        myObjects.remove(myObject);
-                        MyDatabaseHelper myDB = new MyDatabaseHelper(context);
-                        myDB.updateTasks(currentUser.getEmail(), currentUser.fromListToJson(myObjects));
-                        ((MainMenuActivity) context).refreshData(myObjects);
+                        objectToRemove = myObject;
                     }
                 }
+                AlarmHelper.cancelAlarm(context, objectToRemove.getMainTitle());
+                if(objectToRemove != null){
+                    myObjects.remove(objectToRemove);
+                }
+                MyDatabaseHelper myDB = new MyDatabaseHelper(context);
+                myDB.updateTasks(currentUser.getEmail(), currentUser.fromListToJson(myObjects));
+                ((MainMenuActivity) context).refreshData(myObjects);
             }
         });
 

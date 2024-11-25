@@ -1,7 +1,14 @@
 package com.example.todolistandnotifications;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,18 +17,38 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.todolistandnotifications.databinding.ActivityMainBinding;
+import com.google.android.material.timepicker.MaterialTimePicker;
+
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
 public class CreateToDoObjectActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    private ActivityMainBinding binding;
+    private MaterialTimePicker timePicker;
+    private Calendar calendar;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_to_do_object);
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Оставь это пустым или добавь свой код, чтобы отключить стандартное поведение кнопки "Назад"
+            }
+        });
 
         EditText taskName = findViewById(R.id.toDoObjectName);
         EditText taskDescription = findViewById(R.id.toDoObjectDescription);
@@ -49,12 +76,6 @@ public class CreateToDoObjectActivity extends AppCompatActivity implements Adapt
             List<ToDoObject> userListOfObjects = currentUser.getTasks();
             ToDoObject newObject = new ToDoObject();
             for(ToDoObject object: userListOfObjects){
-//                Toast.makeText(this, object.getMainTitle() + " " + taskName.getText().toString(), Toast.LENGTH_LONG).show();
-//                try {
-//                    Thread.sleep(1000); // 1000 миллисекунд = 1 секунда
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
                 if(Objects.equals(object.getMainTitle(), taskName.getText().toString())){
                     Toast.makeText(this, "Задача с таким именем уже существует!", Toast.LENGTH_LONG).show();
                     return;
@@ -102,8 +123,43 @@ public class CreateToDoObjectActivity extends AppCompatActivity implements Adapt
 
             MyDatabaseHelper myDB = new MyDatabaseHelper(CreateToDoObjectActivity.this);
             myDB.updateTasks(currentUser.getEmail(), currentUser.fromListToJson(userListOfObjects));
-            Intent intent = new Intent(CreateToDoObjectActivity.this, MainMenuActivity.class);
-            startActivity(intent);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.YEAR, Integer.parseInt(newObject.getTimeAndDate()[0]));
+            calendar.set(Calendar.MONTH, Integer.parseInt(newObject.getTimeAndDate()[1]) - 1);
+            calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(newObject.getTimeAndDate()[2]));
+            calendar.set(Calendar.HOUR_OF_DAY, Integer.parseInt(newObject.getTimeAndDate()[3]));
+            calendar.set(Calendar.MINUTE, Integer.parseInt(newObject.getTimeAndDate()[4]));
+            calendar.set(Calendar.SECOND, 0);
+
+            long triggerAtMillis = calendar.getTimeInMillis();
+
+            long intervalMillis;
+
+            switch (newObject.getRepeat()) {
+                case "Каждый день":
+                    intervalMillis = AlarmManager.INTERVAL_DAY;
+                    break;
+                case "Каждые 7 дней":
+                    intervalMillis = AlarmManager.INTERVAL_DAY * 7;
+                    break;
+                case "Каждый месяц":
+                    intervalMillis = AlarmManager.INTERVAL_DAY * 30;
+                    break;
+                default:
+                    intervalMillis = 0; // Не повторять
+                    break;
+            }
+
+            if (intervalMillis > 0) {
+                AlarmHelper.setRepeatingAlarm(this, triggerAtMillis, intervalMillis, newObject.getMainTitle(), newObject.getDescription());
+            } else {
+                AlarmHelper.setAlarm(this, triggerAtMillis, newObject.getMainTitle(), newObject.getDescription());
+            }
+
+            // Возврат к MainMenuActivity после установки таймера
+            Intent mainMenuIntent = new Intent(this, MainMenuActivity.class);
+            startActivity(mainMenuIntent);
         });
     }
 
@@ -116,4 +172,5 @@ public class CreateToDoObjectActivity extends AppCompatActivity implements Adapt
     public void onNothingSelected(AdapterView<?> parent) {
         // Действия, если ничего не выбрано
     }
+
 }
