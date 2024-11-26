@@ -19,6 +19,10 @@ public class ToDoObject {
         this.completed = completed;
     }
 
+    static { System.loadLibrary("todolistandnotifications"); }
+
+    public native int checkDeadlineNative(int[] currentTime, int[] taskTime);
+
     public ToDoObject() {
     }
 
@@ -75,12 +79,7 @@ public class ToDoObject {
     public int checkDeadline(){
         int[] currentTime = getCurrentTime();
         int[] taskTime = convertFromStringTimeToIntArray(this.timeAndDate);
-        for(int i = 0; i < 5; i++){
-            if (taskTime[i] < currentTime[i]){
-                return 1;
-            }
-        }
-        return -1;
+        return checkDeadlineNative(currentTime, taskTime);
     }
 
     public static String[] parseDate(String date) {

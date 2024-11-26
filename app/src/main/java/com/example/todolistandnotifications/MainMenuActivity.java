@@ -1,34 +1,30 @@
 package com.example.todolistandnotifications;
 
-import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-
-import com.example.todolistandnotifications.databinding.ActivityMainBinding;
-import com.google.android.material.timepicker.MaterialTimePicker;
-
-import java.util.Calendar;
 import java.util.List;
 
 
 public class MainMenuActivity extends AppCompatActivity {
 
     ToDoObjectAdapter adapter;
+    LinearLayout menuLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,12 +32,44 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ListView listView = findViewById(R.id.listView);
 
+        menuLayout = findViewById(R.id.menuLayout);
+
+        ImageButton menuButton = findViewById(R.id.userProfileIcon);
+        menuButton.setOnClickListener(v -> toggleMenu());
+
+        Button btnLogOut = findViewById(R.id.btnLogOut);
+        btnLogOut.setOnClickListener(v -> {
+            Intent intent = new Intent(MainMenuActivity.this, LogInActivity.class);
+            startActivity(intent);
+            menuLayout.setVisibility(View.GONE); // Скрыть меню
+        });
+
+        Button btnShowStatistics = findViewById(R.id.btnShowStatistics);
+        btnShowStatistics.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Статистика");
+
+            CurrentUserClass cuc = (CurrentUserClass) getApplicationContext();
+            User currentUser = cuc.getUser();
+
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View customLayout = inflater.inflate(R.layout.dialog_layout, null);
+            TextView mainText = customLayout.findViewById(R.id.mainDialogTextView);
+            String stat = "Вовремя выполнено: " + currentUser.getIntegerStatistic()[0]
+                    + "\nУдалено: " + currentUser.getIntegerStatistic()[1]
+                    + "\nПросрочено: " + currentUser.getIntegerStatistic()[2];
+            mainText.setText(stat);
+
+            builder.setView(customLayout);
+            builder.setNegativeButton("Окей", (dialog, which) -> dialog.dismiss());
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            menuLayout.setVisibility(View.GONE); // Скрыть меню
+        });
+        
         createNotificationChannel();
-
-        CurrentUserClass cuc = (CurrentUserClass) getApplicationContext();
-        User currentUser = cuc.getUser();
-        Toast.makeText(this, currentUser.getStringStatistic(), Toast.LENGTH_SHORT).show();
-
 
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
         onBackPressedDispatcher.addCallback(this, new OnBackPressedCallback(true) {
@@ -75,6 +103,15 @@ public class MainMenuActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
     }
+
+    private void toggleMenu() {
+        if (menuLayout.getVisibility() == View.GONE) {
+            menuLayout.setVisibility(View.VISIBLE);
+        } else {
+            menuLayout.setVisibility(View.GONE);
+        }
+    }
+
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
