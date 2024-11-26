@@ -18,7 +18,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
     private static final String DATABASE_NAME = "ToDoList.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String TABLE_NAME = "to_do_list_library";
     private static final String COLUMN_ID = "id";
@@ -27,6 +27,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_TASKS = "tasks";
+    private static final String COLUMN_STATISTIC = "statistic";
 
 
     public MyDatabaseHelper(@Nullable Context context) {
@@ -42,7 +43,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_SURNAME + " TEXT, " +
                 COLUMN_EMAIL + " TEXT, " +
                 COLUMN_PASSWORD + " TEXT, " +
-                COLUMN_TASKS + " TEXT)";
+                COLUMN_TASKS + " TEXT, " +
+                COLUMN_STATISTIC + " TEXT)";
         db.execSQL(query);
     }
 
@@ -86,12 +88,29 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void updateStatistic(String email, String statistic){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_STATISTIC, statistic);
+
+        String selection = COLUMN_EMAIL + " = ?";
+        String[] selectionArgs = { email };
+
+        long result = db.update(TABLE_NAME, cv, selection, selectionArgs);
+        if(result == -1){
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public List<User> readAllUsers() {
         MyDatabaseHelper dbHelper = new MyDatabaseHelper(context);
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         List<User> myList = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT " + COLUMN_NAME + ", " + COLUMN_SURNAME +", " + COLUMN_EMAIL + ", " + COLUMN_PASSWORD + ", " + COLUMN_TASKS + " FROM " + TABLE_NAME, null);
+        Cursor cursor = db.rawQuery("SELECT " + COLUMN_NAME + ", " + COLUMN_SURNAME +", " + COLUMN_EMAIL + ", " + COLUMN_PASSWORD + ", " + COLUMN_TASKS + ", " + COLUMN_STATISTIC + " FROM " + TABLE_NAME, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -100,8 +119,9 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
                 @SuppressLint("Range") String email = cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL));
                 @SuppressLint("Range") String password = cursor.getString(cursor.getColumnIndex(COLUMN_PASSWORD));
                 @SuppressLint("Range") String tasks = cursor.getString(cursor.getColumnIndex(COLUMN_TASKS));
+                @SuppressLint("Range") String statistic = cursor.getString(cursor.getColumnIndex(COLUMN_STATISTIC));
 
-                User user = new User(name, surname, email, password, tasks);
+                User user = new User(name, surname, email, password, tasks, statistic);
                 myList.add(user);
             } while (cursor.moveToNext());
         }

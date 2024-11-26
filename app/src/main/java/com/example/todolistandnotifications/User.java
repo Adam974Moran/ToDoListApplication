@@ -24,8 +24,9 @@ public class User {
     private String password;
     private List<ToDoObject> tasks;
     private String tasksJson;
+    private Integer[] statistic; // 0 - completed, 1 - deleted, 2 - missed deadline
 
-    public User(String name, String surname, String email, String password, String tasksJson) {
+    public User(String name, String surname, String email, String password, String tasksJson, String statistic) {
         this.email = email;
         this.name = name;
         this.password = password;
@@ -35,6 +36,18 @@ public class User {
             tasks = fromJsonToList(tasksJson);
         } else {
             tasks = new LinkedList<>();
+        }
+        if (statistic != null) {
+            String[] stringStat = statistic.split(",");
+            this.statistic = new Integer[stringStat.length]; // Инициализация массива с нужным размером
+            for (int i = 0; i < stringStat.length; i++) {
+                this.statistic[i] = Integer.parseInt(stringStat[i]);
+            }
+        } else {
+            this.statistic = new Integer[3];
+            this.statistic[0] = 0;
+            this.statistic[1] = 0;
+            this.statistic[2] = 0;
         }
     }
 
@@ -76,6 +89,18 @@ public class User {
 
     public void setTasks(List<ToDoObject> tasks) {
         this.tasks = tasks;
+    }
+
+    public Integer[] getIntegerStatistic() {
+        return statistic;
+    }
+
+    public String getStringStatistic() {
+        return this.statistic[0] + "," + this.statistic[1] + "," + this.statistic[2];
+    }
+
+    public void setStatistic(Integer[] statistic) {
+        this.statistic = statistic;
     }
 
     public void outputAllData(){

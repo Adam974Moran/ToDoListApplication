@@ -76,14 +76,11 @@ public class ToDoObject {
         int[] currentTime = getCurrentTime();
         int[] taskTime = convertFromStringTimeToIntArray(this.timeAndDate);
         for(int i = 0; i < 5; i++){
-            if (taskTime[i] > currentTime[i]){
+            if (taskTime[i] < currentTime[i]){
                 return 1;
             }
-            else if (taskTime[i] < currentTime[i]){
-                return -1;
-            }
         }
-        return 0;
+        return -1;
     }
 
     public static String[] parseDate(String date) {

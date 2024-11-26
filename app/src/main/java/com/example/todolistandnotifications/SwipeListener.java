@@ -81,6 +81,14 @@ public class SwipeListener implements View.OnTouchListener {
             public void onClick(DialogInterface dialog, int which) {
                 CurrentUserClass cuc = (CurrentUserClass) context.getApplicationContext();
                 User currentUser = cuc.getUser();
+
+                Integer[] currentStat = currentUser.getIntegerStatistic();
+                currentStat[1]++;
+                currentUser.setStatistic(currentStat);
+
+                MyDatabaseHelper myDB = new MyDatabaseHelper(context);
+                myDB.updateStatistic(currentUser.getEmail(), currentUser.getStringStatistic());
+
                 List<ToDoObject> myObjects = currentUser.getTasks();
                 ToDoObject objectToRemove = null;
                 for (ToDoObject myObject : myObjects) {
@@ -92,7 +100,6 @@ public class SwipeListener implements View.OnTouchListener {
                 if(objectToRemove != null){
                     myObjects.remove(objectToRemove);
                 }
-                MyDatabaseHelper myDB = new MyDatabaseHelper(context);
                 myDB.updateTasks(currentUser.getEmail(), currentUser.fromListToJson(myObjects));
                 ((MainMenuActivity) context).refreshData(myObjects);
             }

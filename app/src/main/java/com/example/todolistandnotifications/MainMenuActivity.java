@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
@@ -37,17 +38,9 @@ public class MainMenuActivity extends AppCompatActivity {
 
         createNotificationChannel();
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default")
-                .setSmallIcon(R.mipmap.ic_notification_for_app)
-                .setContentTitle("Test Notification")
-                .setContentText("This is a test notification.")
-                .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setAutoCancel(true);
-
-        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (notificationManager != null) {
-            notificationManager.notify(0, builder.build());
-        }
+        CurrentUserClass cuc = (CurrentUserClass) getApplicationContext();
+        User currentUser = cuc.getUser();
+        Toast.makeText(this, currentUser.getStringStatistic(), Toast.LENGTH_SHORT).show();
 
 
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();

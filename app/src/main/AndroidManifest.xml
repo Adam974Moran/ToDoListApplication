@@ -31,6 +31,7 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".CreateToDoObjectActivity"/>
+        <activity android:name=".UpdateToDoObjectActivity"/>
         <receiver android:name=".AlarmReceiver"/>
     </application>
 </manifest>
